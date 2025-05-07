@@ -2,6 +2,7 @@ import React from 'react'
 import MovieService from '../../services/movie-service'
 import Error from '../error/error'
 import Spinner from '../spinner/spinner'
+import PropTypes from 'prop-types';
 import "./hero.scss"
 
 class Hero extends React.Component {
@@ -67,10 +68,18 @@ const Content = ({movie}) => {
 					: movie.description}
 				</p>
 				<div>
-					<button className='btn btn-secondary'>Radnom movie</button>
+					<button className='btn btn-secondary'>Random movie</button>
 					<button className='btn btn-primary'>Details</button>
 				</div>
 			</div>
 		</>
 	)
+}
+
+Content.propTypes = {
+	movie: {
+		backdrop_path: PropTypes.string,
+		name: PropTypes.string,
+		description: PropTypes.string
+	}
 }

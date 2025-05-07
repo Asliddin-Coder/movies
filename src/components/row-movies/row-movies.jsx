@@ -50,7 +50,7 @@ class RowMovies extends React.Component {
     ) : null;
 
     return (
-      <div className="rowmovies">
+      <div className="rowmovies" >
         <div className="rowmovies__top">
           <div className="rowmovies__top-title">
             <img src="/tranding.svg" alt="" />
