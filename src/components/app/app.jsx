@@ -1,4 +1,3 @@
-import Card from "../card/card";
 import ErrorBoundary from "../error-boundary/error-boundary";
 import Hero from "../hero/hero";
 import Navbar from "../navbar/navbar";
