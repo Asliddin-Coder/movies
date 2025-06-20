@@ -8,9 +8,9 @@ const App = () => {
     <div className="app">
       <Navbar />
       <ErrorBoundary>
-      <Hero />
+        <Hero />
       </ErrorBoundary>
-      
+
       <ErrorBoundary>
         <RowMovies />
       </ErrorBoundary>

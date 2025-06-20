@@ -1,32 +1,27 @@
-import { useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import MovieService from "../../services/movie-service";
 import Error from "../error/error";
 import Spinner from "../spinner/spinner";
 import PropTypes from "prop-types";
 import "./hero.scss";
+import useMovieService from "../../services/movie-service";
 
 const Hero = () => {
   const [movie, setMovie] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
 
-  const movieService = new MovieService();
+  const { getRandomMovie, loading, error } = useMovieService();
 
   useEffect(() => {
-	getMovie()
+    getMovie();
   }, []);
 
   const getMovie = () => {
-    movieService
-      .getRandomMovie()
-      .then((res) => setMovie(res))
-      .catch(() => setError(true))
-      .finally(() => setLoading(false));
+    getRandomMovie().then((res) => setMovie(res))
   };
 
   const errorContent = error ? <Error /> : null;
   const loadingContent = loading ? <Spinner /> : null;
-  const content = !(error || loading) ? <Content movie={movie} /> : null;
+  const content = !(error || loading || !movie) ? <Content movie={movie} /> : null;
 
   return (
     <div className="hero">
