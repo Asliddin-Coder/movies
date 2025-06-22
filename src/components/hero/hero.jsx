@@ -5,6 +5,7 @@ import Spinner from "../spinner/spinner";
 import PropTypes from "prop-types";
 import "./hero.scss";
 import useMovieService from "../../services/movie-service";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
   const [movie, setMovie] = useState(null);
@@ -48,6 +49,7 @@ const Hero = () => {
 export default Hero;
 
 const Content = ({ movie }) => {
+  const navigate = useNavigate()
   return (
     <>
       <img src={movie.backdrop_path} alt="img" />
@@ -61,7 +63,7 @@ const Content = ({ movie }) => {
         </p>
         <div>
           <button className="btn btn-secondary">Random movie</button>
-          <button className="btn btn-primary">Details</button>
+          <button className="btn btn-primary" onClick={() => navigate(`/movie/${movie.id}`)}>Details</button>
         </div>
       </div>
     </>
