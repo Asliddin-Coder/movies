@@ -5,8 +5,8 @@ import Navbar from "../navbar/navbar";
 import RowMovies from "../row-movies/row-movies";
 import HomePage from "../../pages/home-page";
 import TvPage from "../../pages/tv-page";
-import DetailtsPage from "../../pages/detailts-page";
 import NotFoundPage from "../../pages/not-found-page";
+import DetailedPage from "../../pages/detailed-page";
 
 
 const App = () => {
@@ -16,7 +16,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomePage/>} />
         <Route path="/tv" element={<TvPage/>} />
-        <Route path="/movie/:movieId" element={<DetailtsPage/>}/>
+        <Route path="/movie/:movieId" element={<DetailedPage/>}/>
         <Route path="*" element={<NotFoundPage/>}/>
       </Routes>
     </div>
