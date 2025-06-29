@@ -1,9 +1,7 @@
-import { useParams } from "react-router-dom";
+import DetailedPage from "../components/detailed-page/detailed-page";
 
-const DetailedPage = () => {
-  let {movieId} = useParams();
-
-  return <div>DetailtsPage: {movieId}</div>;
+const DetailsPage = () => {
+  return <DetailedPage/>;
 };
 
-export default DetailedPage;
+export default DetailsPage;

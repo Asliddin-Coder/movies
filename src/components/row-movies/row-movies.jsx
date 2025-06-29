@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { Modal } from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
-import MovieService from "../../services/movie-service";
 import MovieInfo from "../movie-info/movie-info";
 import RowMoviesItem from "../row-movies-item/row-movies-item";
 import "./row-movies.scss";
 import Error from "../error/error";
 import Spinner from "../spinner/spinner";
 import useMovieService from "../../services/movie-service";
+import { useLocation } from "react-router-dom";
 
 const RowMovies = () => {
 
@@ -15,10 +15,13 @@ const RowMovies = () => {
   const [movies, setMovies] = useState([])
   const [movieId, setMovieId] = useState(null)
   const [page, setPage] = useState(1)
+
+  const {pathname} = useLocation()
   
-  const {getTrandingMovies, loading, error, clearError} = useMovieService();
+  const {getTrandingMovies, getPopularMovies, loading, error, clearError} = useMovieService();
 
   useEffect(() => {
+    clearError(false)
     getMoreMovies()
   }, [])
 
@@ -30,8 +33,11 @@ const RowMovies = () => {
   };
 
   const getTrendingMovies = (page) => {
-    clearError(false)
-    getTrandingMovies(page).then((res) => setMovies(movies => [...movies, ...res]))
+    if(pathname === "/popular"){
+      getPopularMovies(page).then((res) => setMovies(movies => [...movies, ...res]))
+    }else{
+      getTrandingMovies(page).then((res) => setMovies(movies => [...movies, ...res]))
+    }
   };
 
   const getMoreMovies = () => {
@@ -47,7 +53,7 @@ const RowMovies = () => {
         <div className="rowmovies__top">
           <div className="rowmovies__top-title">
             <img src="/tranding.svg" alt="" />
-            <h1>Trending</h1>
+            <h1>{pathname === "/popular" ? "Popular" : "Tranding"}</h1>
           </div>
           <div className="hr" />
           <a href="#">See more</a>
